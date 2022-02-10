@@ -6,17 +6,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AutheticationComponent } from './pages/authetication/authetication.component';
 import { AppRoutingModule } from './app-routing-modules';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutheticationComponent
+    AutheticationComponent,
+    HomeComponent
   ],
   imports: [
+    MaterialModule,
     ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
