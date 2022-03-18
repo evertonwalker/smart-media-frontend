@@ -1,9 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt'
 
 const PREVIOUS_URL = environment.baseUrl;
 @Injectable({
@@ -11,7 +12,11 @@ const PREVIOUS_URL = environment.baseUrl;
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    public jwtHelper: JwtHelperService) { }
 
   login(loginObj: { email: string, password: string }): Observable<boolean> {
     return this.http.post<{ access_token: string }>(`${PREVIOUS_URL}/auth`, loginObj)
@@ -34,5 +39,16 @@ export class AuthService {
       );
   }
 
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('jwt_token') || '';
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  verifyToken(): Observable<boolean> {
+    return this.http.get<boolean>(`${PREVIOUS_URL}/auth`)
+      .pipe(map(() => true),
+        catchError((err) => of(false))
+      );
+  }
 
 }

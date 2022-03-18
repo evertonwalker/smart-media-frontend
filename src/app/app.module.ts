@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -9,6 +9,10 @@ import { AppRoutingModule } from './app-routing-modules';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { HomeComponent } from './pages/home/home.component';
+import { JwtHelperService, JwtModule, JwtModuleOptions, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { AuthGuardService } from './pages/authetication/services/auth-guard.service';
+import { AuthInterceptor } from './pages/authetication/services/auth-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -22,9 +26,21 @@ import { HomeComponent } from './pages/home/home.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    JwtModule
   ],
-  providers: [],
+  providers: [
+    [
+      { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+      JwtHelperService,
+      AuthGuardService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+      }
+    ]
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
