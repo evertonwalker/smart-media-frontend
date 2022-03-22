@@ -1,0 +1,92 @@
+.user-smartphone {
+
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.pattern-notlink {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.mat-toolbar.mat-primary {
+    background: rgba(17, 17, 17, 0.877);
+}
+
+a {
+    text-decoration: none;
+}
+.text-none {
+    color: #e7dcda;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: red;
+}
+
+.icon-align {
+    vertical-align: top;
+    margin-right: 5%;
+}
+
+.list-group-item {
+    text-align: center;
+    padding: .25rem 1.25rem
+}
+
+.label-action {
+    width: 100%;
+    font-weight: 400;
+    color: #e0d2d0;
+    border: 1px solid transparent;
+    padding: .575rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.logged-user {
+    color: white;
+}
+
+.buttons {
+    color: white;
+}
+
+.mat-drawer.mat-drawer-side {
+    z-index: 1;
+    width: 305px;
+}
+
+.logout-button {
+    cursor: pointer;
+}
+
+.example-is-mobile .example-toolbar {
+    position: fixed;
+    z-index: 10;
+}
+
+h1.example-app-name {
+    margin-left: 8px;
+}
+
+.example-sidenav-container {
+    flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+    flex: 1 0 auto;
+}

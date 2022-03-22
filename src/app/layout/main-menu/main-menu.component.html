@@ -1,0 +1,63 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button (click)="snav.toggle()" class="pointer">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div class="text-right buttons row">
+            <div class="col-6 user-smartphone" *ngIf="user"> 
+              <span class="material-icons "> account_box </span>
+            </div>
+        
+            <div class="col-6 mt-1">
+                <span class="logout-button" (click)="logOutuser()">
+                    <mat-icon>exit_to_app</mat-icon>
+                </span>
+            </div>
+        </div>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56">
+
+            <label class="label-action" type="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseExample">
+                <mat-icon class="icon-align">
+                    home
+                </mat-icon>
+              <a class="text-none" routerLink="/home">Inicio </a>
+            </label>
+
+
+            <label class="label-action" type="button" (click)="passValue(1)">
+                <mat-icon class="icon-align">
+                    settings
+                </mat-icon>
+               Módulo de Acesso
+              </label>
+            <div class="collapse" id="collapseExample" *ngIf="showDetail(1)">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a (click)="hiddenSide(snav)" routerLinkActive="active" routerLink="/resource">Recursos</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a (click)="hiddenSide(snav)" routerLinkActive="active" routerLink="/group">Grupos</a>
+                    </li>
+                    <li  class="list-group-item">
+                        <a (click)="hiddenSide(snav)" routerLinkActive="active" routerLink="/user">Usuário</a>
+                    </li>
+              </ul>
+            </div>
+          
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="content-wrapper">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>
+
+
+

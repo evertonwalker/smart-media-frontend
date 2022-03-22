@@ -12,13 +12,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { JwtHelperService, JwtModule, JwtModuleOptions, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { AuthGuardService } from './pages/authetication/services/auth-guard.service';
 import { AuthInterceptor } from './pages/authetication/services/auth-interceptor.service';
+import { MainMenuComponent } from './layout/main-menu/main-menu.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AutheticationComponent,
-    HomeComponent
+    HomeComponent,
+    MainMenuComponent
   ],
   imports: [
     MaterialModule,
