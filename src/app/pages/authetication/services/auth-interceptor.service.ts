@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     }
                     localStorage.removeItem('jwt_token');
                     this.snackService.showSimpleSnack('Faça o login novamente', 10000);
-                    this.router.navigate(['']);
+                    this.router.navigate(['login']);
                 }
             }));
     }

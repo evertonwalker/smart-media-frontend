@@ -13,6 +13,7 @@ import { JwtHelperService, JwtModule, JwtModuleOptions, JWT_OPTIONS } from "@aut
 import { AuthGuardService } from './pages/authetication/services/auth-guard.service';
 import { AuthInterceptor } from './pages/authetication/services/auth-interceptor.service';
 import { MainMenuComponent } from './layout/main-menu/main-menu.component';
+import { ListSchedulesComponent } from './pages/list-schedules/list-schedules.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MainMenuComponent } from './layout/main-menu/main-menu.component';
     AppComponent,
     AutheticationComponent,
     HomeComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    ListSchedulesComponent
   ],
   imports: [
     MaterialModule,

@@ -4,20 +4,24 @@
     margin-top: 5px;
 }
 
-.pattern-notlink {
-    color: #007bff;
-    cursor: pointer;
-}
 
 .mat-toolbar.mat-primary {
     background: rgba(17, 17, 17, 0.877);
 }
 
+
+p {
+    margin-top: 10px
+}
+
+.active-link {
+    color: rgba(0, 212, 255, 1) !important; 
+} 
+
 a {
     text-decoration: none;
-}
-.text-none {
-    color: #e7dcda;
+    color: #ffff;
+    font-weight: bold;
 }
 
 .example-container {
@@ -28,7 +32,8 @@ a {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: red;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(12, 12, 51, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
 
 .icon-align {
@@ -43,8 +48,8 @@ a {
 
 .label-action {
     width: 100%;
-    font-weight: 400;
-    color: #e0d2d0;
+    font-weight: bold;
+    color: #ffff;
     border: 1px solid transparent;
     padding: .575rem .75rem;
     font-size: 1rem;
@@ -56,13 +61,12 @@ a {
     cursor: pointer;
 }
 
-
 .logged-user {
-    color: white;
+    color: #ffff;
 }
 
 .buttons {
-    color: white;
+    color: #ffff;
 }
 
 .mat-drawer.mat-drawer-side {
@@ -70,8 +74,8 @@ a {
     width: 305px;
 }
 
-.logout-button {
-    cursor: pointer;
+mat-toolbar {
+    justify-content: space-between;
 }
 
 .example-is-mobile .example-toolbar {
