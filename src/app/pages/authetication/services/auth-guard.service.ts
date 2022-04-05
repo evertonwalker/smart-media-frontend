@@ -21,6 +21,7 @@ export class AuthGuardService implements CanActivate {
 
     private redirectAndShowMessage(): boolean {
         this.snackService.showSimpleSnack('Faça o login novamente', 10000);
+        this.router.navigate(['login']);
         return false;
     }
 

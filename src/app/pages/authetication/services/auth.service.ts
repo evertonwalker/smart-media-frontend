@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt'
+import MatSnackService from 'src/app/services/mat-snack-service';
 
 const PREVIOUS_URL = environment.baseUrl;
 @Injectable({
@@ -14,7 +15,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private snackBar: MatSnackBar,
+    private snackBarService: MatSnackService,
     private router: Router,
     public jwtHelper: JwtHelperService) { }
 
@@ -28,10 +29,11 @@ export class AuthService {
         }),
         catchError(error => {
           if (error.status === 404) {
-            this.snackBar.open('Dados incorretos, revise-os', 'X', {
-              duration: 5000
-            });
+            this.snackBarService.showSimpleSnack('Dados incorretos, revise-os', 10000);
             return throwError(() => new Error('Dados incorretos'));
+          } else if (+error.status >= 500) {
+            this.snackBarService.showSimpleSnack('A aplicação está fora do ar, tente novamente mais tarde.', 10000);
+            return throwError(() => new Error('Something bad happened; please try again later.'));
           } else {
             return throwError(() => new Error('Something bad happened; please try again later.'));
           }
