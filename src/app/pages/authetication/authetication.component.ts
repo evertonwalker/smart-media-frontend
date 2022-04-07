@@ -10,6 +10,8 @@ import { AuthService } from './services/auth.service';
 })
 export class AutheticationComponent implements OnDestroy {
 
+  passwordInput = 'password';
+
   destroydLogin!: Subscription;
   formAuth = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -35,5 +37,8 @@ export class AutheticationComponent implements OnDestroy {
     this.destroydLogin?.unsubscribe();
   }
 
+  changeTypePassword() {
+    this.passwordInput === 'password' ? this.passwordInput = 'text' : this.passwordInput = 'password';
+  }
 
 }

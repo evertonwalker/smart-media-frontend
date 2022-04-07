@@ -37,6 +37,14 @@ section {
     text-align: center;
 }
 
+.p-viewer{
+    float: right;
+    margin-left: -50px;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+  }
+
 button:not([disabled]) {
     color: white;
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(12, 12, 51, 1) 35%, rgb(2, 158, 189) 100%);
