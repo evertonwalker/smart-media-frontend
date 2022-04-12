@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt'
 import MatSnackService from 'src/app/services/mat-snack-service';
@@ -44,6 +43,22 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = localStorage.getItem('jwt_token') || '';
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  createAccount(registerObj: { email: string, password: string }): Observable<boolean> {
+    return this.http.post(`${PREVIOUS_URL}/users`, registerObj)
+      .pipe(
+        switchMap(() => this.login(registerObj))
+        , catchError((e: HttpErrorResponse) => {
+          if (e.status === 409) {
+            this.snackBarService.showSimpleSnack('E-mail já cadastrado.', 10000);
+            return throwError(() => new Error('Conflict'));
+          } else {
+            this.snackBarService.showSimpleSnack('Aplicação fora do ar, contate o suporte.', 10000);
+            return throwError(e.error);
+          }
+        })
+      );
   }
 
   verifyToken(): Observable<boolean> {

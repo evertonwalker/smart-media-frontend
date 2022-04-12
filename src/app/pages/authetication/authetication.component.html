@@ -1,5 +1,5 @@
 <section>
-    <div class="container-login">
+    <div class="container-login" [@loginOrRegister]="stateOfForm ? 'signin' : 'signup'" *ngIf="stateOfForm">
 
         <div class="title-login">
             <h3>Bem vindo</h3>
@@ -28,11 +28,55 @@
             </div>
 
             <div class="box-new-account">
-                <p class="pointer">
+                <p class="pointer" (click)="stateOfForm = !stateOfForm">
                     Criar conta
                 </p>
             </div>
 
         </form>
+    </div>
+    <div class="container-account" *ngIf="!stateOfForm">
+        <div class="title-login">
+            <h3>Cadastra-se</h3>
+        </div>
+        <form [formGroup]="formRegister" (ngSubmit)="onRegister()">
+            <div class="box-input">
+                <input type="email" placeholder="E-mail" id="email-register" autocomplete="off" formControlName="email">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                    <div *ngIf="email.errors?.['required']">E-mail é obrigatório</div>
+                    <div *ngIf="email.errors?.['email']">Formato de e-mail inválido</div>
+                </div>
+            </div>
+            <div class="box-input">
+                <input [type]="passwordInput" placeholder="Senha" id="password-register" formControlName="password">
+                <span class="p-viewer" (click)="changeTypePassword()">
+                   <mat-icon>remove_red_eye</mat-icon>
+                </span>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+                    <div *ngIf="password.errors?.['required']">Senha é obrigatório</div>
+                </div>
+            </div>
+            <div class="box-input">
+                <input [type]="passwordInput" placeholder="Senha" id="confirmPassword" formControlName="confirmPassword">
+                <span class="p-viewer" (click)="changeTypePassword()">
+                   <mat-icon>remove_red_eye</mat-icon>
+                </span>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+                    <div *ngIf="password.errors?.['required']">Senha é obrigatório</div>
+                </div>
+            </div>
+
+            <div class="box-button">
+                <button [disabled]="!formRegister.valid" type="submit" class="pointer">CRIAR</button>
+            </div>
+
+            <div class="box-new-account">
+                <p class="pointer" (click)="stateOfForm = !stateOfForm">
+                   Voltar para o login
+                </p>
+            </div>
+
+        </form>
+
     </div>
 </section>
