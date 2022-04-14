@@ -5,22 +5,24 @@ section {
     height: 100vh;
     width: 100%;
 
-    background: url('../../../assets/img/background.webp') no-repeat center center fixed;
+    background: url('../../../assets/img/login-bg.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.background.webp', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='background.webp', sizingMethod='scale')";
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.login-bg.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='login-bg.jpg', sizingMethod='scale')";
 }
 
 .container-login {
-    background-color: rgb(198, 198, 198);
+    background-color: rgb(64, 64, 65);
     padding: 50px;
     border-radius: 5px;
+    display: flex;
+    max-width: 312px;
 }
 
-.container-account{
+.container-account {
     background-color: rgb(198, 198, 198);
     padding: 50px;
     border-radius: 5px;
@@ -32,36 +34,43 @@ section {
     margin: 5% 0% 10% 0%;
 }
 
+.title-register {
+    width: 100%;
+    text-align: center;
+    margin: 5% 0% 20% 0%;
+}
+
 .box-input {
     margin-bottom: 10%;
 }
 
-.invalid-feedback{
-    margin-top: 1%;
+.invalid-feedback {
     color: red;
     font-size: 13px;
 }
 
-.box-button{
+.box-button {
     text-align: center;
 }
 
-.box-new-account{
+.box-new-account {
     margin-top: 20%;
     text-align: center;
 }
 
-.p-viewer{
+.p-viewer {
     float: right;
     margin-left: -50px;
     position: relative;
     z-index: 1;
-    cursor:pointer;
-  }
+    cursor: pointer;
+}
+
+
 
 button:not([disabled]) {
     color: white;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(12, 12, 51, 1) 35%, rgb(2, 158, 189) 100%);
+    background: linear-gradient(90deg, #06435E 0%, #1D6F96 35%, rgb(2, 158, 189) 100%);
 }
 
 button:focus {
@@ -82,32 +91,14 @@ img {
     margin-bottom: 5%;
 }
 
-input {
-    border: 0;
-    outline: 0;
-    padding: 10px;
-    background-color: transparent;
-    border-bottom: 1px solid rgb(116, 115, 115);
-    font-size: 15px;
-}
-
-input:focus {
-    outline: none !important;
-    background-color: transparent;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
-}
-
 h3 {
     font-weight: bolder;
     font-size: 24px;
+    color: #FFF;
 }
 
-p{
-    color: rgb(10, 77, 99);
+p {
+    color: #FFF;
     font-weight: bolder;
     text-decoration: underline;
 }

@@ -35,3 +35,11 @@ details>summary:first-of-type {
     list-style: none;
     cursor: pointer;
 }
+
+input {
+    color: #fff !important; 
+}
+
+.color-label-form-fied{
+    color: #FFF;
+}

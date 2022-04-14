@@ -55,7 +55,7 @@ export class AuthService {
             return throwError(() => new Error('Conflict'));
           } else {
             this.snackBarService.showSimpleSnack('Aplicação fora do ar, contate o suporte.', 10000);
-            return throwError(e.error);
+            return throwError(() => new Error(e.message));
           }
         })
       );
@@ -66,6 +66,21 @@ export class AuthService {
       .pipe(map(() => true),
         catchError((err) => of(false))
       );
+  }
+
+  verifyEmail(email: string): Observable<boolean> {
+    return this.http.post<boolean>(`${PREVIOUS_URL}/auth/verify-email`, { email })
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          if (err.status === 404) {
+            this.snackBarService.showSimpleSnack('E-mail não cadastrado', 10000);
+            return throwError(() => new Error('E-mail não encontrado.'));
+          } else {
+            this.snackBarService.showSimpleSnack('Aplicação fora do ar, contate o suporte.', 10000);
+            return throwError(() => new Error(err.message));
+          }
+        })
+      )
   }
 
   logout(): void {

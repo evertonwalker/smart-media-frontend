@@ -1,42 +1,51 @@
 <section>
-    <div class="container-login" [@loginOrRegister]="stateOfForm ? 'signin' : 'signup'" *ngIf="stateOfForm">
+    <div class="container-login" *ngIf="!createAccount">
+        <div>
+            <div class="title-login">
+                <h3>Bem vindo</h3>
+                <img src="../../../assets/img/angular_whiteTransparent.png" class="logo" alt="logo">
+            </div>
+            <form [formGroup]="formAuth" (ngSubmit)="onSubmitEmail()">
+                <div [@loginOrRegister]="stateOfForm ? 'signin' : 'signup'">
+                    <div class="box-input">
+                        <mat-form-field  appearance="fill">
+                            <mat-label class="color-label-form-fied">E-mail</mat-label>
+                            <input class="form-field" matInput type="email" id="email" formControlName="email">
+                        </mat-form-field>
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                            <div *ngIf="email.errors?.['required']">E-mail é obrigatório</div>
+                            <div *ngIf="email.errors?.['email']">Formato de e-mail inválido</div>
+                        </div>
+                    </div>
 
-        <div class="title-login">
-            <h3>Bem vindo</h3>
-            <img src="../../../assets/img/angular_whiteTransparent.png" class="logo" alt="logo">
+                    <div class="box-button">
+                        <button [disabled]="!email.valid" type="submit" class="pointer">Próximo</button>
+                    </div>
+                </div>
+                <!-- <div class="box-input">
+                    <input [type]="passwordInput" placeholder="Senha" id="password" formControlName="password">
+                    <span class="p-viewer" (click)="changeTypePassword()">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </span>
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+                        <div *ngIf="password.errors?.['required']">Senha é obrigatório</div>
+                    </div>
+                </div> -->
+
+
+                <div class="box-new-account">
+                    <p class="pointer" (click)="createAccount = !createAccount">
+                        Criar conta
+                    </p>
+                </div>
+
+            </form>
         </div>
-        <form [formGroup]="formAuth" (ngSubmit)="onSubmit()">
-            <div class="box-input">
-                <input type="email" placeholder="E-mail" id="email" formControlName="email">
-                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
-                    <div *ngIf="email.errors?.['required']">E-mail é obrigatório</div>
-                    <div *ngIf="email.errors?.['email']">Formato de e-mail inválido</div>
-                </div>
-            </div>
-            <div class="box-input">
-                <input [type]="passwordInput" placeholder="Senha" id="password" formControlName="password">
-                <span class="p-viewer" (click)="changeTypePassword()">
-                   <mat-icon>remove_red_eye</mat-icon>
-                </span>
-                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
-                    <div *ngIf="password.errors?.['required']">Senha é obrigatório</div>
-                </div>
-            </div>
 
-            <div class="box-button">
-                <button [disabled]="!formAuth.valid" type="submit" class="pointer">ENTRAR</button>
-            </div>
-
-            <div class="box-new-account">
-                <p class="pointer" (click)="stateOfForm = !stateOfForm">
-                    Criar conta
-                </p>
-            </div>
-
-        </form>
     </div>
-    <div class="container-account" *ngIf="!stateOfForm">
-        <div class="title-login">
+
+    <!-- <div class="container-register" *ngIf="createAccount">
+        <div class="title-register">
             <h3>Cadastra-se</h3>
         </div>
         <form [formGroup]="formRegister" (ngSubmit)="onRegister()">
@@ -50,16 +59,17 @@
             <div class="box-input">
                 <input [type]="passwordInput" placeholder="Senha" id="password-register" formControlName="password">
                 <span class="p-viewer" (click)="changeTypePassword()">
-                   <mat-icon>remove_red_eye</mat-icon>
+                    <mat-icon>remove_red_eye</mat-icon>
                 </span>
                 <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
                     <div *ngIf="password.errors?.['required']">Senha é obrigatório</div>
                 </div>
             </div>
             <div class="box-input">
-                <input [type]="passwordInput" placeholder="Senha" id="confirmPassword" formControlName="confirmPassword">
+                <input [type]="passwordInput" placeholder="Senha" id="confirmPassword"
+                    formControlName="confirmPassword">
                 <span class="p-viewer" (click)="changeTypePassword()">
-                   <mat-icon>remove_red_eye</mat-icon>
+                    <mat-icon>remove_red_eye</mat-icon>
                 </span>
                 <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
                     <div *ngIf="password.errors?.['required']">Senha é obrigatório</div>
@@ -72,11 +82,11 @@
 
             <div class="box-new-account">
                 <p class="pointer" (click)="stateOfForm = !stateOfForm">
-                   Voltar para o login
+                    Voltar para o login
                 </p>
             </div>
-
         </form>
 
-    </div>
+    </div> -->
+
 </section>
